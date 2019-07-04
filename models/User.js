@@ -29,7 +29,9 @@ const updatePassword = (user, next) => {
     })
 }
 
-userSchema.pre('save', next => updatePassword(this, next))
+userSchema.pre('save', function(next) {
+    updatePassword(this, next)
+})
 
 userSchema.methods.comparePassword = (password, next) => {
     bcrypt.compare(password, this.password, (err, isMatch) => {
